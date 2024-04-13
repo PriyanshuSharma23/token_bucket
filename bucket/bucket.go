@@ -14,11 +14,15 @@ func (b *Bucket) sync() {
 	ts := time.Now()
 	seconds := int(ts.Sub(b.t).Seconds())
 
-	b.t = ts
+	if seconds <= 0 {
+		return
+	}
+
+	b.t = b.t.Add(time.Duration(seconds))
 	b.b = min(b.b+b.r*seconds, b.c)
 }
 
-// Returns the maximum capcaity if the bucket 
+// Returns the maximum capcaity if the bucket
 func (b *Bucket) Cap() int {
 	return b.c
 }

@@ -93,4 +93,32 @@ func TestBucket(t *testing.T) {
 
 		_ = NewBucket(2, -10)
 	})
+
+	t.Run("Non integer duration in milliseconds", func(t *testing.T) {
+		b := NewBucket(2, 5)
+
+		b.Check(2)
+		time.Sleep(500 * time.Millisecond)
+		b.Check(3)
+		time.Sleep(500 * time.Millisecond)
+
+		if b.Size() != 2 {
+			t.Errorf("expected size to be %d but it is %d", 2, b.Size())
+		}
+	})
+
+	t.Run("Non integer duration in milliseconds 2", func(t *testing.T) {
+		b := NewBucket(2, 5)
+
+		b.Check(1)
+		time.Sleep(200 * time.Millisecond)
+		b.Check(2)
+		time.Sleep(500 * time.Millisecond)
+		b.Check(2)
+		time.Sleep(200 * time.Millisecond)
+
+		if b.Size() != 0 {
+			t.Errorf("expected size to be %d but it is %d", 0, b.Size())
+		}
+	})
 }
