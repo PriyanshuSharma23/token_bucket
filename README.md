@@ -8,6 +8,8 @@ This repository contains an implementation of a token bucket in Go. A token buck
 
 The Bucket struct implements the token bucket algorithm. It tracks the current size of the bucket, its capacity, and the rate at which tokens are added to the bucket. Tokens are added to the bucket at a constant rate (r tokens per second) until the bucket is full (c tokens). When requests are made, tokens are consumed from the bucket if available. If the bucket is empty, requests are denied until tokens are refilled.
 
+For more detials, check [wikepedia](https://en.wikipedia.org/wiki/Token_bucket)
+
 ## Usage
 
 To use the token bucket implementation, follow these steps:
