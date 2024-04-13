@@ -43,7 +43,7 @@ Tests
 The repository includes unit tests to ensure the correctness and robustness of the implementation. To run the tests, use the following command:
 
 ```bash
-$ go test -v
+$ go test ./... -v
 ```
 
 Additional Tests
