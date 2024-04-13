@@ -1,5 +1,7 @@
 # Token Bucket Implementation
 
+**NOT MEANT FOR PRODUCTION USE**
+
 This repository contains an implementation of a token bucket in Go. A token bucket is a rate limiting algorithm used in networking and distributed systems to control the rate of traffic or requests.
 
 ## Implementation Details
@@ -10,20 +12,14 @@ The Bucket struct implements the token bucket algorithm. It tracks the current s
 
 To use the token bucket implementation, follow these steps:
 
-1. Import the bucket package in your Go program:
-
-```go
-import "path/to/bucket"
-```
-
-2. Create a new bucket instance using the NewBucket function:
+1. Create a new bucket instance using the NewBucket function:
 
 ```go
 // Create a bucket with a fill rate of 2 tokens per second and a capacity of 10 tokens
 b := bucket.NewBucket(2, 10)
 ```
 
-3. Use the Check method to check if a request can be served:
+2. Use the Check method to check if a request can be served:
 
 ```go
 // Check if a single token can be consumed from the bucket
@@ -34,7 +30,7 @@ if b.Check(1) {
 }
 ```
 
-4. Optionally, use the Size method to get the current size of the bucket:
+3. Optionally, use the Size method to get the current size of the bucket:
 
 ```go
 size := b.Size()
@@ -51,4 +47,3 @@ $ go test -v
 Additional Tests
 
 Several additional test cases have been added to ensure the robustness of the implementation. These test cases cover scenarios such as exhausting the bucket's capacity, negative fill rates, negative capacity inputs, and ensure thread safety by testing concurrent access.
-
