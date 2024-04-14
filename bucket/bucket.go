@@ -1,7 +1,9 @@
 // Package bucket implements a token bucket
 package bucket
 
-import "time"
+import (
+	"time"
+)
 
 type Bucket struct {
 	r int       // fill rate
@@ -18,7 +20,7 @@ func (b *Bucket) sync() {
 		return
 	}
 
-	b.t = b.t.Add(time.Duration(seconds))
+	b.t = b.t.Add(time.Duration(seconds) * time.Second)
 	b.b = min(b.b+b.r*seconds, b.c)
 }
 
